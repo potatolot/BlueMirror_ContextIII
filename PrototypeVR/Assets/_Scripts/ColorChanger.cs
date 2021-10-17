@@ -18,7 +18,6 @@ public class ColorChanger : MonoBehaviour
     }
     public void SetSelectMaterial()
     {
-        print("Button Pressed!");
         meshRenderer.material = selectMaterial;
     }
 

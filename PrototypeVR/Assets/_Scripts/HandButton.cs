@@ -4,6 +4,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandButton : XRBaseInteractable
 {
+    public bool isPressed;
+    public int id;
     public UnityEvent OnPress;
 
     private bool previousPress = false;
@@ -11,12 +13,12 @@ public class HandButton : XRBaseInteractable
     private XRBaseInteractor hoverInteractor;
     private float previousHandHeight;
 
-    private float yMin = 0.0f;
-    private float yMax = 0.0f;
+    public float yMin = 0.0f;
+    public float yMax = 0.0f;
     protected override void Awake()
     {
         base.Awake();
-
+        isPressed = false;
     }
     protected override void OnHoverEntered(HoverEnterEventArgs args)
     {
@@ -53,8 +55,9 @@ public class HandButton : XRBaseInteractable
     private void SetMinMax()
     {
         Collider collider = GetComponent<Collider>();
-        yMin = transform.localPosition.y - ((float)collider.bounds.size.y * 0.5f);
-        yMax = (float)transform.localPosition.y;
+        //yMin = transform.localPosition.y - ((float)collider.bounds.size.y * 0.5f);
+        yMin = 0.0f;
+        yMax = transform.localPosition.y;
     }
 
     public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)
@@ -76,7 +79,7 @@ public class HandButton : XRBaseInteractable
 
     private float GetLocalYPosition(Vector3 position)
     {
-        Vector3 localPosition = transform.root.InverseTransformPoint(position);
+        Vector3 localPosition = transform.parent.InverseTransformPoint(position);
         return localPosition.y;
     }
 

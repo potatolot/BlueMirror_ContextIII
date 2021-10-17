@@ -13,6 +13,8 @@ public class MovementProvider : LocomotionProvider
     private CharacterController charactercontroller;
     private GameObject head;
 
+    public float deadzone = 0.1f;
+
     protected override void Awake()
     {
         charactercontroller = GetComponent<CharacterController>();
@@ -26,7 +28,7 @@ public class MovementProvider : LocomotionProvider
 
     private void Update()
     {
-        PositionController();
+        //PositionController();
         CheckForInput();
         ApplyGravity();
     }
@@ -62,7 +64,15 @@ public class MovementProvider : LocomotionProvider
     private void CheckForMovement(InputDevice device)
     {
         if (device.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 position))
-            StartMove(position);
+        {
+            if (position.magnitude > deadzone)
+            {
+                {
+                    PositionController();
+                    StartMove(position);
+                }
+            }
+        }
     }
 
     private void StartMove(Vector2 position)
