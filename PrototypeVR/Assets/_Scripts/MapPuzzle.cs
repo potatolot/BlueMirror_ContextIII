@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MapPuzzle : MonoBehaviour
 {
+    public GameObject panel;
     public List<GameObject> Buttons;
     public List<GameObject> Lights;
     public bool[] Solution;
@@ -13,6 +14,7 @@ public class MapPuzzle : MonoBehaviour
 
     public void Awake()
     {
+        panel.SetActive(false);
         PressCheck = new bool[10];
         ButtonLocked  = new bool[10];
         Solution = new bool[10];
@@ -48,20 +50,20 @@ public class MapPuzzle : MonoBehaviour
     private void CheckSolution()
     {
         int c = 0;
-        bool correct = false;
         foreach (bool press in PressCheck)
         {
             if (press)
                 c++;
         }
 
-        if (c % 2 == 0)
+        if (c % 2 == 0 && c > 0)
         {
             for (int i = 0; i < PressCheck.Length; i++)
             {
                 if (PressCheck[i] && !Solution[i])
                 {
                     ResetLights();
+                    break;
                 }
             }
             if (PressCheck[4] && PressCheck[8])
@@ -80,9 +82,22 @@ public class MapPuzzle : MonoBehaviour
                 ButtonLocked[6] = true; ButtonLocked[7] = true;
             }
 
-            if (solved[0] && solved[1] && solved[2])
+            int s = 0;
+            for (int i = 0; i < solved.Length; i++)
             {
-                MapPuzzleSolved();
+                if (solved[i])
+                    s++;
+            }
+            if(s > c / 3)
+            {
+                if (solved[0] && solved[1] && solved[2])
+                {
+                    MapPuzzleSolved();
+                }
+            }
+            else
+            {
+                ResetLights();
             }
 
         }
@@ -99,6 +114,8 @@ public class MapPuzzle : MonoBehaviour
             PressCheck[i] = false;
         for (int i = 0; i < ButtonLocked.Length; i++)
             ButtonLocked[i] = false;
+        for (int i = 0; i < solved.Length; i++)
+            solved[i] = false;
     }
 
     private void MapPuzzleSolved()
@@ -109,6 +126,12 @@ public class MapPuzzle : MonoBehaviour
             ButtonLocked[i] = true;
         AudioSource sound = transform.GetComponent<AudioSource>();
         //sound.Play(0);
+        panel.SetActive(true);
+    }
+
+    public void LeverPuzzleSolved()
+    {
+
     }
 
 }
