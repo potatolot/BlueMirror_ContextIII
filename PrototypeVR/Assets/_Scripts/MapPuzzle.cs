@@ -11,13 +11,16 @@ public class MapPuzzle : MonoBehaviour
     public bool[] PressCheck;
     public bool[] ButtonLocked;
     private bool[] solved;
+    public bool activated;
 
     public void Awake()
     {
+        activated = false;
         panel.SetActive(false);
         PressCheck = new bool[10];
         ButtonLocked  = new bool[10];
         Solution = new bool[10];
+
         Solution[4] = true;
         Solution[8] = true;
 
@@ -26,24 +29,28 @@ public class MapPuzzle : MonoBehaviour
 
         Solution[6] = true;
         Solution[7] = true;
+
         solved = new bool[3];
     }
     public void ButtonPressed(HandButton button)
     {
-        GameObject light = Lights[button.id];
-        if (!PressCheck[button.id])
+        if (activated)
         {
-            print("Button not yet pressed");
-            light = Lights[button.id];
-            light.GetComponent<ColorChanger>().SetSelectMaterial();
-            PressCheck[button.id] = true;
-            CheckSolution();
-        }
-        else if(!ButtonLocked[button.id])
-        {
-            print("Button pressed and not locked");
-            light.GetComponent<ColorChanger>().SetOriginalMaterial();
-            PressCheck[button.id] = false;
+            GameObject light = Lights[button.id];
+            if (!PressCheck[button.id])
+            {
+                print("Button not yet pressed");
+                light = Lights[button.id];
+                light.GetComponent<ColorChanger>().SetSelectMaterial();
+                PressCheck[button.id] = true;
+                CheckSolution();
+            }
+            else if (!ButtonLocked[button.id])
+            {
+                print("Button pressed and not locked");
+                light.GetComponent<ColorChanger>().SetOriginalMaterial();
+                PressCheck[button.id] = false;
+            }
         }
     }
 

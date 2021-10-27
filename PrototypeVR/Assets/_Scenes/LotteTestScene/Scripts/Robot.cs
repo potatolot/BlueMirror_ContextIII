@@ -15,8 +15,8 @@ public class Robot : MonoBehaviour
 
     private Rigidbody _rb;
 
-    private int _connections = 0;
-    bool _puzzleComplete = false;
+    public int _connections = 0;
+    public bool _puzzleComplete = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,10 +50,11 @@ public class Robot : MonoBehaviour
 
         for (int i = 0; i < connections.Count; i++)
         {
-            if (connections[i].GetComponent<MeshRenderer>().material.color == Color.yellow) _connections++;
+            if (connections[i].GetComponent<MeshRenderer>().material.color == Color.yellow)
+                _connections++;
         }
 
-        if (_connections == 3) _puzzleComplete = true;
+        if (_connections == 4) _puzzleComplete = true;
         else _connections = 0;
 
         transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z));
@@ -67,12 +68,20 @@ public class Robot : MonoBehaviour
             _rb.isKinematic = false;
 
             _rb.velocity = (transform.forward * 2);
-            Debug.Log("Works");
-            Debug.DrawLine(transform.position, transform.forward);
+            //Debug.Log("Works");
+            //Debug.DrawLine(transform.position, transform.forward);
         }
             panel.transform.position = transform.position + transform.forward / 4.0f;
             panel.transform.eulerAngles = new Vector3(panel.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
+        if (_puzzleComplete)
+        {
+            panel.SetActive(false);
+            foreach(GameObject dial in dials)
+            {
+                dial.SetActive(false);
+            }
+        }
         //for (int i = 0; i < dials.Count; i++)
         //{
 
