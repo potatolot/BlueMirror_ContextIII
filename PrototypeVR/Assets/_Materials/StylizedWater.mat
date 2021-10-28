@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-132110474309499478
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StylizedWater
+  m_Shader: {fileID: -6465566751694194690, guid: 1f01bed266cd5bd459f9ccbb81bedcca, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_038ba43bf3b3404fa381b0c455d3a9cd: 0.05
+    - Vector1_09c32950d6724a8eb1953b00cb47f087: 7.8
+    - Vector1_33dd1b3626414125b363c4504f9f9fe0: 0.01
+    - Vector1_82df6e4e4c964c97b68d4be0bc369df0: 0.6
+    - Vector1_a32f45e0c05b457ab2f5dc7c2be109e3: 21.37
+    - Vector1_a6577bda35624b0f90c13936588d75b0: 174.3
+    - Vector1_de6c6d7466b948b2af066c395475150d: 2
+    - Vector1_f670f5803b6442ad9ae1bc9e4ace1e43: 1
+    m_Colors:
+    - Color_1588db7bd65347248091ac2407ce8734: {r: 1, g: 1, b: 1, a: 0.7529412}
+    - Color_31a05356be6448989f95418731e2b0de: {r: 0, g: 0.01751076, b: 0.6792453, a: 0.1764706}
+    - Color_bb27067f306c46d0b728d783dfc2563e: {r: 0, g: 0.7535582, b: 1, a: 0.09803922}
+  m_BuildTextureStacks: []

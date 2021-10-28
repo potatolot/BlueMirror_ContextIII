@@ -6,6 +6,7 @@ public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] Animator doorAnimation;
     public GameObject sound;
+    public PuzzleManager manager;
 
     private void OnTriggerExit(Collider other)
     {
@@ -13,6 +14,7 @@ public class DoorTrigger : MonoBehaviour
         {
             doorAnimation.SetTrigger("DoorOpens");
             sound.SetActive(false);
+            manager.DoorOpened();
         }
     }
 }

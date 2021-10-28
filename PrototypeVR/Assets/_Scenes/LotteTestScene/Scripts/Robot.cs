@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Robot : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class Robot : MonoBehaviour
 
     public int _connections = 0;
     public bool _puzzleComplete = false;
+
+    public GameObject textbox;
+
+    public PuzzleManager manager;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +50,6 @@ public class Robot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Vector3 robotPlayerNormal = Vector3.Normalize(transform.forward);
 
         for (int i = 0; i < connections.Count; i++)
@@ -81,6 +85,7 @@ public class Robot : MonoBehaviour
             {
                 dial.SetActive(false);
             }
+            manager.RadioFixed();
         }
         //for (int i = 0; i < dials.Count; i++)
         //{
@@ -89,6 +94,25 @@ public class Robot : MonoBehaviour
         //    dials[i].transform.position = transform.position - differenceDials[i];
         //    dials[i].transform.eulerAngles = new Vector3(dials[i].transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
         //}
+
+    }
+
+    public IEnumerator TurnOn()
+    {
+        textbox.SetActive(true);
+        textbox.GetComponentInChildren<Text>().text = "Thank you for freeing me!";
+        yield return new WaitForSeconds(5);
+        textbox.GetComponentInChildren<Text>().text = "Could you please fix my radio?";
+
+    }
+
+    public IEnumerator RadioOn()
+    {
+        textbox.GetComponentInChildren<Text>().text = "Good job!";
+        yield return new WaitForSeconds(4);
+        textbox.GetComponentInChildren<Text>().text = "Let's go to the monitor now.";
+        yield return new WaitForSeconds(4);
+        textbox.SetActive(false);
 
     }
 }
